@@ -9,4 +9,49 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+  	<description>Simple Servlet</description>
+  	<display-name>Simple Servlet</display-name>
+  	<servlet-name>Simple</servlet-name>
+  	<servlet-class>net.anilmathew.play.scwcd.SimpleServlet</servlet-class>
+  	<init-param>
+  		<param-name>mode</param-name>
+  		<param-value>text</param-value>
+  	</init-param>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>RequestInspector</servlet-name>
+  	<servlet-class>net.anilmathew.play.scwcd.RequestInspectorServlet</servlet-class>
+  	<init-param>
+  		<param-name>mode</param-name>
+  		<param-value>text</param-value>
+  	</init-param>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>ResponseManipulator</servlet-name>
+  	<servlet-class>net.anilmathew.play.scwcd.ResponseManipulatorServlet</servlet-class>
+  	<init-param>
+  		<param-name>mode</param-name>
+  		<param-value>text</param-value>
+  	</init-param>
+  </servlet>
+   
+  <servlet-mapping>
+  	<servlet-name>Simple</servlet-name>
+  	<url-pattern>/simpleServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>RequestInspector</servlet-name>
+  	<url-pattern>*.ri</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>ResponseManipulator</servlet-name>
+  	<url-pattern>*.resp</url-pattern>
+  </servlet-mapping>
+    
 </web-app>
