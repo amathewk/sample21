@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>SCWCD Playground</title>
 </head>
 <body>
-sdf
+<a href="simpleServlet/simpleServlet.ri?a=b&c=d">/cookieVisiblePath/simpleServlet.ri?a=b&c=d</a>
+<a href="simpleServlet?a=b&c=d">simpleServlet?a=b&c=d</a>
 </body>
 </html>
