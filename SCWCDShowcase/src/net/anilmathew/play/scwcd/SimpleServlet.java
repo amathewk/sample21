@@ -3,6 +3,7 @@ package net.anilmathew.play.scwcd;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -13,16 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 
 public class SimpleServlet extends HttpServlet {
 	
+	
+	static Logger log = Logger.getAnonymousLogger();
+	
 	private static String mode = "text";
 	
 	public void init(ServletConfig servletConfig) {
 		mode = servletConfig.getInitParameter("mode");
+		log.info(servletConfig.getServletName() + "initialized");
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+
 		Cookie cookie = new Cookie("newcookieName", "newcookieValue");
 		cookie.setMaxAge(0);
 		resp.addCookie(cookie);

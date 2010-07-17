@@ -3,6 +3,9 @@ package net.anilmathew.play.scwcd;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -13,8 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RequestInspectorServlet extends HttpServlet {
 	
+	
 	public void init(ServletConfig servletConfig) {
-		
+		SimpleServlet.log.info(servletConfig.getServletName() + "initialized");
 	}
 	
 	@Override

@@ -2,6 +2,9 @@ package net.anilmathew.play.scwcd;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -12,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ResponseManipulatorServlet extends HttpServlet {
 	
 	public void init(ServletConfig servletConfig) {
-		
+		SimpleServlet.log.info(servletConfig.getServletName() + "initialized");
 	}
 	
 	@Override
@@ -31,11 +34,8 @@ public class ResponseManipulatorServlet extends HttpServlet {
 		resp.resetBuffer();
 		writer.write("should see.");
 		
-		
-		
 		writer.write("</body>");
 		writer.write("</html>");
-
 	}
 
 }
