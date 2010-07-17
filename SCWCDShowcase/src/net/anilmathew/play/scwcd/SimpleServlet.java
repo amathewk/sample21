@@ -5,6 +5,9 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.logging.Logger;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -28,6 +31,7 @@ public class SimpleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
+		if(true) throw new RuntimeException();
 		Cookie cookie = new Cookie("newcookieName", "newcookieValue");
 		cookie.setMaxAge(0);
 		resp.addCookie(cookie);
@@ -40,6 +44,6 @@ public class SimpleServlet extends HttpServlet {
 			byte[] content = {0,1,1,0};
 			outputStream.write(content);
 		}
+		
 	}
-
 }
