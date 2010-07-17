@@ -21,6 +21,9 @@
 	<filter-name>Authz</filter-name>
 	<servlet-name>Simple</servlet-name>
 	<url-pattern>*</url-pattern>
+	<dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>ERROR</dispatcher>
   </filter-mapping>
  
   <servlet>
@@ -39,6 +42,10 @@
   		<param-value>text</param-value>
   	</init-param>
   	<load-on-startup>2</load-on-startup>
+  	<!-- 
+  	<run-as></run-as>
+  	<security-role-ref></security-role-ref>
+  	 -->
   </servlet>
   
   <servlet>
@@ -89,5 +96,20 @@
   	<servlet-name>ACCESS_DENIED</servlet-name>
   	<url-pattern>/accessDenied</url-pattern>
   </servlet-mapping>
+  
+  <env-entry>
+	  <env-entry-name>runLevel</env-entry-name>
+	  <env-entry-type>java.lang.Integer</env-entry-type>
+	  <env-entry-value>10</env-entry-value>
+  </env-entry>
+  
+  <error-page>
+	  <exception-type>java.lang.Exception</exception-type>
+	  <location>/tryAgain.jsp</location>
+  </error-page>
+
+<listener>
+	<listener-class>net.anilmathew.play.scwcd.SimpleSessionListener</listener-class>
+</listener>
     
 </web-app>

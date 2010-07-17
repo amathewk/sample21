@@ -17,28 +17,31 @@ public class SimpleServletFilter implements Filter {
 	private String version;
 
 	public void destroy() {
-		SimpleServlet.log.info("SimpleServletFilter destroyed");
+//		SimpleServlet.log.info("SimpleServletFilter destroyed");
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
 		SimpleServlet.log.info("SimpleServletFilter hit");
-		if (req.getRequestURL().toString().endsWith(".log")){
-			SimpleServlet.log.info("SimpleServletFilter Version : " + version + " denied");
+		String forwardedPath = (String)req.getAttribute("javax.servlet.include.request_uri");
+		boolean accessDeniedInclude = false; 
+			//forwardedPath != null && forwardedPath.endsWith("accessDenied"); 
+		if (req.getRequestURL().toString().endsWith(".log") && !accessDeniedInclude){
+//			SimpleServlet.log.info("SimpleServletFilter Version : " + version + " denied");
 			PrintWriter writer = response.getWriter();
 			response.setContentType("text/html");
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/accessDenied");
 			writer.print("Access denied");
 			requestDispatcher.include(request, response);
 		} else{
-			SimpleServlet.log.info("SimpleServletFilter allowed");
+//			SimpleServlet.log.info("SimpleServletFilter allowed");
 			chain.doFilter(request, response);
 		}
 	}
 
 	public void init(FilterConfig filterConfig) throws ServletException {
-		SimpleServlet.log.info("SimpleServletFilter init");
+//		SimpleServlet.log.info("SimpleServletFilter init");
 		version = filterConfig.getInitParameter("version");
 	}
 
