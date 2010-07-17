@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>SCWCDShowcase</display-name>
+ 
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
+    <welcome-file>p.html</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <filter>
+  	<description>Authz</description>
+  	<filter-name>Authz</filter-name>
+  	<filter-class>net.anilmathew.play.scwcd.SimpleServletFilter</filter-class>
+  	<init-param>
+	  	<param-name>version</param-name>
+	  	<param-value>23</param-value>
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+	<filter-name>Authz</filter-name>
+	<servlet-name>Simple</servlet-name>
+	<url-pattern>*</url-pattern>
+  </filter-mapping>
+ 
+  <servlet>
+  	<description>loggin serlvet</description>
+  	<servlet-name>Log</servlet-name>
+  	<jsp-file>/log.jsp</jsp-file>
+  </servlet>
   
   <servlet>
   	<description>Simple Servlet</description>
@@ -19,6 +38,7 @@
   		<param-name>mode</param-name>
   		<param-value>text</param-value>
   	</init-param>
+  	<load-on-startup>2</load-on-startup>
   </servlet>
   
   <servlet>
@@ -28,6 +48,7 @@
   		<param-name>mode</param-name>
   		<param-value>text</param-value>
   	</init-param>
+  	<load-on-startup>1</load-on-startup>
   </servlet>
   
   <servlet>
@@ -38,6 +59,16 @@
   		<param-value>text</param-value>
   	</init-param>
   </servlet>
+  
+  <servlet>
+ 	<servlet-name>ACCESS_DENIED</servlet-name>
+ 	<jsp-file>/accessDenied.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Log</servlet-name>
+  	<url-pattern>*.log</url-pattern>
+  </servlet-mapping>
    
   <servlet-mapping>
   	<servlet-name>Simple</servlet-name>
@@ -52,6 +83,11 @@
   <servlet-mapping>
   	<servlet-name>ResponseManipulator</servlet-name>
   	<url-pattern>*.resp</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>ACCESS_DENIED</servlet-name>
+  	<url-pattern>/accessDenied</url-pattern>
   </servlet-mapping>
     
 </web-app>
