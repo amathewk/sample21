@@ -10,6 +10,26 @@
 <listener>
 	<listener-class>net.anilmathew.play.scwcd.SimpleSessionListener</listener-class>
 </listener>
+<listener>
+	<listener-class>net.anilmathew.play.scwcd.SimpleSessionAttributeListener</listener-class>
+</listener>
+<listener>
+	<listener-class>net.anilmathew.play.scwcd.SimpleRequestListener</listener-class>
+</listener>
+<listener>
+	<listener-class>net.anilmathew.play.scwcd.SimpleRequestAttributeListener</listener-class>
+</listener>
+<listener>
+	<listener-class>net.anilmathew.play.scwcd.ServletContextListener</listener-class>
+</listener>
+<listener>
+	<listener-class>net.anilmathew.play.scwcd.ServletContextAttributeListener</listener-class>
+</listener>
+
+<context-param>
+	<param-name>PRODUCTION</param-name>
+	<param-value>true</param-value>
+</context-param>
   
   <session-config>
   	<session-timeout>1</session-timeout>
@@ -115,5 +135,46 @@
 	  <exception-type>java.lang.Exception</exception-type>
 	  <location>/tryAgain.jsp</location>
   </error-page>
+  
+  <login-config>
+  	<auth-method>BASIC</auth-method>
+  </login-config>
+  
+  <security-role>
+	  <role-name>dev</role-name>
+  </security-role>
+
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>SESSION</web-resource-name>
+  		<url-pattern>*.jsp</url-pattern>
+  		<http-method>PUT</http-method>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>dev</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>SESSION</web-resource-name>
+  		<url-pattern>*.jsp</url-pattern>
+  		<http-method>PUT</http-method>
+  	</web-resource-collection>
+  	<web-resource-collection>
+  		<web-resource-name>simpleservlet</web-resource-name>
+  		<url-pattern>/simpleServlet</url-pattern>
+  		<http-method>GET</http-method>
+  	</web-resource-collection>
+  	<web-resource-collection>
+  		<web-resource-name>ALL</web-resource-name>
+  		<url-pattern>/*</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>dev</role-name>
+  	</auth-constraint>
+  </security-constraint>
+
+
 
 </web-app>

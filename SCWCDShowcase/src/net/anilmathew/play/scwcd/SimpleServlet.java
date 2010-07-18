@@ -35,6 +35,9 @@ public class SimpleServlet extends HttpServlet {
 
 		HttpSession session = req.getSession(true);
 
+		req.getSession().getServletContext().setAttribute("PRODUCTION", true);
+		
+		req.getSession().removeAttribute("pp");
 		session.setAttribute("pp", new Pojo("1"));
 		
 		if ("text".equalsIgnoreCase(mode)) {
