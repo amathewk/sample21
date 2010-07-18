@@ -25,6 +25,9 @@ public class RequestInspectorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		req.getSession().removeAttribute("pp");
+		req.getSession().setAttribute("pp", new Pojo("2"));
+		
 		PrintWriter writer = resp.getWriter();
 		
 		writer.write("<html>");
