@@ -23,10 +23,9 @@ public class SimpleServletFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
-		SimpleServlet.log.info("SimpleServletFilter hit");
+//		SimpleServlet.log.info("SimpleServletFilter hit");
 		String forwardedPath = (String)req.getAttribute("javax.servlet.include.request_uri");
-		boolean accessDeniedInclude = false; 
-			//forwardedPath != null && forwardedPath.endsWith("accessDenied"); 
+		boolean accessDeniedInclude = forwardedPath != null && forwardedPath.endsWith("accessDenied");
 		if (req.getRequestURL().toString().endsWith(".log") && !accessDeniedInclude){
 //			SimpleServlet.log.info("SimpleServletFilter Version : " + version + " denied");
 			PrintWriter writer = response.getWriter();
