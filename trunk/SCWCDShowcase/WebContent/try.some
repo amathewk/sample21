@@ -1,0 +1,17 @@
+
+TRY SOME
+<%@ page import="java.net.*" %>
+
+<%! int a = 5; %>
+
+<%! private int add(int a, int b) {return a+b;} %>
+
+<%= add(a++,2) %>
+
+<% InetAddress google =   InetAddress.getByName("www.google.com"); 
+	out.println (google);
+	
+%>
+
+
+
