@@ -9,5 +9,21 @@
 <body>
 <a href="simpleServlet/simpleServlet.ri?a=b&c=d">/cookieVisiblePath/simpleServlet.ri?a=b&c=d</a>
 <a href="simpleServlet?a=b&c=d">simpleServlet?a=b&c=d</a>
+
+<%!
+int b = 1;
+public void jspInit() { System.out.println ("in init"); b+=4; }
+public void jspDestroy() {System.out.println ("in destroy"); } 
+%>
+<%= b %>
+<br/>
+<br/>
+<%= "Application scope attribute variable 'PRODUCTION' : " + application.getAttribute("PRODUCTION") + " <br/>"  %>
+<%= "Application scope param 'PRODUCTION' : " + application.getInitParameter("PRODUCTION")  %>
+
+<br/>
+TRY SOME INCLUDE
+<br/>
+<%@ include file="/try.some" %>
 </body>
 </html>
