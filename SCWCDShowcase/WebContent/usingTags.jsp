@@ -4,7 +4,9 @@
 C:OUT TAG
 
 <%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%><br/>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%><br/>
 <br/>
 <br/>
 <br/>
@@ -47,5 +49,44 @@ now undefined again: <c:out value="${something}"></c:out>
 	INFINITI
 </c:if>
 
+<%
+	Map carMap = new HashMap();
+	carMap.put("honda","4");
+	pageContext.setAttribute("carMap", carMap);
+%>
+<br/>
+<c:set property="honda" value="3" target="${carMap}" ></c:set>
+<c:out value="${carMap.honda}"/>
+
+<br/>
+<c:set var="a" value="AA" scope="session" />
+<c:set var="a" value="DD" scope="request" />
+<c:out value="${a}"  />
+
+<br/>
+REMOVE FROM SESSION
+<br/>
+<c:remove var="a" scope="session"/>
+AFTER : <c:out value="${a}"  />
+<br/>
+<br/>
+REMOVE FROM ALL SCOPES
+<br/>
+<c:remove var="a" />
+AFTER : <c:out value="${a}"  />
+<br/>
+
+<c:import url="included.jsp" >
+	<c:param name="incVal" value="cat"></c:param>
+	<c:param name="incVal2">cat2</c:param>
+</c:import>
+
+<pre>
+==============================
+==============================
+==============================
+</pre>
+<c:import url="http://www.google.com" var="google"></c:import>
+<c:out value="${google}" escapeXml="false" />
 
 
