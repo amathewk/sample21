@@ -77,10 +77,24 @@ AFTER : <c:out value="${a}"  />
 <br/>
 
 <c:import url="included.jsp" >
-	<c:param name="incVal" value="cat"></c:param>
+	<c:param name="incVal" value="cat" ></c:param>
 	<c:param name="incVal2">cat2</c:param>
 </c:import>
 
+
+<br/>
+CATCHING EXCEPTION
+<c:catch var="exception">
+<% 
+cars.get(8);
+%>
+</c:catch>
+${exception}
+
+
+<br/>
+IMPORTIN URLS
+<br/>
 <pre>
 ==============================
 ==============================
@@ -88,5 +102,4 @@ AFTER : <c:out value="${a}"  />
 </pre>
 <c:import url="http://www.google.com" var="google"></c:import>
 <c:out value="${google}" escapeXml="false" />
-
 
